@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # Here all app with django franwork
     "djoser",
     "rest_framework",
+    'rest_framework_simplejwt.token_blacklist'
     # --------------------------
 ]
 
