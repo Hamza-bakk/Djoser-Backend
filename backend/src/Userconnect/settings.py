@@ -44,14 +44,12 @@ INSTALLED_APPS = [
     # Here all app with django franwork
     "djoser",
     "rest_framework",
-    'rest_framework_simplejwt.token_blacklist'
+    "rest_framework_simplejwt.token_blacklist",
     # --------------------------
 ]
 
 REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_permissions.IsAuthenticated"
-    ),
+    "DEFAULT_AUTHENTICATION_CLASSES": ("rest_framework_permissions.IsAuthenticated"),
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
@@ -134,10 +132,11 @@ EMAIL_BACKEND = os.environ.get(
     "EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend"
 )
 EMAIL_HOST = os.environ.get("EMAIL_HOST")
-EMAIL_PORT = int(os.environ.get("EMAIL_PORT", default=1025))
+EMAIL_PORT = int(os.environ.get("EMAIL_PORT", default=587))
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = os.environ.get("EMAIL_USE_TLS", default=True)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
