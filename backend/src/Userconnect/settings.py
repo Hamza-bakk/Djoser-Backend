@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # Here all app added
     "jwtuser",
+    "corsheaders",
     # ------------------
     "django.contrib.admin",
     "django.contrib.auth",
@@ -85,6 +86,7 @@ DJOSER = {
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -93,6 +95,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "Userconnect.urls"
+
+
+CORS_ALLOWED_ORIGINS = [os.getenv("FRONT_ONE")]
+
 
 TEMPLATES = [
     {
