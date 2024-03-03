@@ -34,7 +34,6 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # Here all app added
     "jwtuser",
-    "corsheaders",
     # ------------------
     "django.contrib.admin",
     "django.contrib.auth",
@@ -46,6 +45,7 @@ INSTALLED_APPS = [
     "djoser",
     "rest_framework",
     "rest_framework_simplejwt.token_blacklist",
+    "corsheaders",
     # --------------------------
 ]
 
@@ -57,8 +57,11 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    "AUTH_HEADER_TYPES": ("JWT",),
+    "AUTH_HEADER_TYPES": ("JWT"),
 }
+
+DOMAIN = "localhost:5173/auth/users"
+SITE_NAME = "HB || THE BAKKAR Hamza"
 
 DJOSER = {
     "LOGIN_FIELD": "email",
@@ -70,17 +73,18 @@ DJOSER = {
     "SET_PASSWORD_RETYPE": True,
     "PASSWORD_RESET_CONFIRM_URL": "password/reset/confirm/{uid}/{token}",
     "USERNAME_RESET_CONFIRM_URL": "email/reset/confirm/{uid}/{token}",
-    "ACTIVATION_URL": "activate/{uid}/{token}",
+    'ACTIVATION_URL': 'activation/{uid}/{token}',
     "SEND_ACTIVATION_EMAIL": True,
     # 'SOCIAL_AUTH_TOKEN_STRATEGY': 'djoser.social.token.jwt.TokenStrategy',
     # 'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': ['http://localhost:8000/google', 'http://localhost:8000/facebook'],
     "SERIALIZERS": {
         "user_create": "jwtuser.serializers.UserCreateSerializer",
         "user": "jwtuser.serializers.UserCreateSerializer",
-        # 'current_user': 'jwtuser.serializers.UserCreateSerializer',
+        "current_user": "jwtuser.serializers.UserCreateSerializer",
         "user_delete": "djoser.serializers.UserDeleteSerializer",
     },
 }
+print(DJOSER["ACTIVATION_URL"].format(uid="exemple_uid", token="exemple_token"))
 
 
 MIDDLEWARE = [
@@ -98,6 +102,29 @@ ROOT_URLCONF = "Userconnect.urls"
 
 
 CORS_ALLOWED_ORIGINS = [os.getenv("FRONT_ONE")]
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
 
 
 TEMPLATES = [
